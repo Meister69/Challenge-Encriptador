@@ -1,0 +1,94 @@
+<meta charset="UTF-8">
+
+<script>
+
+    /* 
+    Iterar por el texto y cambiar los caracteres.
+    La letra "a" es convertida para "ai"
+    La letra "e" es convertida para "enter"
+    La letra "i" es convertida para "imes"
+    La letra "o" es convertida para "ober"
+    La letra "u" es convertida para "ufat"
+    */
+
+    // Diccionario para encriptar. 
+    const dict = {
+        "a": "ai",
+        "e": "enter",
+        "i": "imes",
+        "o": "ober",
+        "u": "ufat"
+    };
+
+    // Función de encripción
+    function encriptar(texto) {
+        let string_encriptada = "";
+        // Iterar por el largo del texto
+        for (let i = 0; i < texto.length; i++) {
+            // Chequear si el caracter en esta posición
+            // necesita ser encriptado.
+            if (texto[i] in dict) {
+                string_encriptada += dict[texto[i]];
+            } else {
+                string_encriptada += texto[i];
+            }
+        }
+        return string_encriptada;
+    }
+
+    // Diccionario inverso para desencriptar.
+    var reverseDict = {
+        "ai": "a",
+        "enter": "e",
+        "imes": "i",
+        "ober": "o",
+        "ufat": "u"
+    };
+
+    // Función de desencripción
+    function desencriptar(texto_encriptado) {
+        var texto = "";
+        var i = 0;
+        while (i < texto_encriptado.length) {
+            // Chequear por "ai"
+            if (texto_encriptado.substring(i, i+2) === "ai") {
+                texto += "a";
+                i += 2;
+            }
+            // Chequear por "enter"
+            else if (texto_encriptado.substring(i, i+5) === "enter") {
+                texto += "e";
+                i += 5;
+            }
+            // Chequear por "imes"
+            else if (texto_encriptado.substring(i, i+4) === "imes") {
+                texto += "i";
+                i += 4;
+            }
+            // Chequear por "ober"
+            else if (texto_encriptado.substring(i, i+4) === "ober") {
+                texto += "o";
+                i += 4;
+            }
+            // Chequear por "ufat"
+            else if (texto_encriptado.substring(i, i+4) === "ufat") {
+                texto += "u";
+                i += 4;
+            }
+            // Si nada aplica, ingresamos el caracter directamente.
+            else {
+                texto += texto_encriptado[i];
+                i++;
+            }
+        }
+        return texto;
+    }
+
+    console.log(encriptar("gato"));
+    console.log(encriptar("perro"));
+    console.log(encriptar("hola"));
+
+    console.log(desencriptar("gaitober"));
+    console.log(desencriptar("penterrrober"));
+    console.log(desencriptar("hoberlai"));
+</script>
